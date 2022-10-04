@@ -5,6 +5,9 @@ exports.config = {
 
   commonCapabilities: {
     name: "parallel_test",
+    project: "Cucumber-js-browserstack",
+    "browserstack.debug" : "true",
+    "browserstack.networkLogs" : "true",
     build: "cucumber-js-browserstack"
   },
 

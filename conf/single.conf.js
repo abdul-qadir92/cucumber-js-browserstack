@@ -6,6 +6,9 @@ exports.config = {
   capabilities: [{
     browserName: 'chrome',
     name: "single_test",
-    build: "cucumber-js-browserstack"
+    project: "Cucumber-js-browserstack",
+    build: "cucumber-js-browserstack",
+    "browserstack.debug" : "true",
+    "browserstack.networkLogs" : "true",
   }]
 }

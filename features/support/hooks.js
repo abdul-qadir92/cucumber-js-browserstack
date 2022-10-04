@@ -8,6 +8,7 @@ var config = require(config_file).config;
 
 var username = process.env.BROWSERSTACK_USERNAME || config.user;
 var accessKey = process.env.BROWSERSTACK_ACCESS_KEY || config.key;
+var builname = new Date().getTime();
 
 var createBrowserStackSession = function(config, caps){
   return new webdriver.Builder().
@@ -25,6 +26,11 @@ var myHooks = function () {
     var caps = config.capabilities[task_id];
     caps['browserstack.user'] = username;
     caps['browserstack.key'] = accessKey;
+    if(process.env.BROWSERSTACK_BUILD_NAME){
+    caps['build'] = process.env.BROWSERSTACK_BUILD_NAME;
+    }else{
+    caps['build'] = caps['build'] + builname;
+    }
 
     if(caps["browserstack.local"]){
       // Code to start browserstack local before start of test and stop browserstack local after end of test
@@ -50,6 +56,7 @@ var myHooks = function () {
       else callback();
     });
   });
+
 };
 
 module.exports = myHooks;
